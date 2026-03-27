@@ -1,4 +1,4 @@
-import { Calendar, CheckCircle2, MessageSquare, Star } from 'lucide-react';
+import { Calendar, CheckCircle2, MessageSquare } from 'lucide-react';
 
 interface ActivityResponseCardProps {
   title: string;
