@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
                 element: <ActivitiesTeacher />,
                 
             },
-            {path: 'new activities', element: <NewActivitiesTeacher/>},
+            {path: 'new-activitie', element: <NewActivitiesTeacher/>},
             {
                 path: "historic",
                 element: <HistoricTeacher />,
