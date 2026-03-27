@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { LayoutTeachers } from "./app/teachers/_layout";
-import { DashboardTeacher } from "./app/teachers/Dashboardteacher";
 import { ActivitiesTeacher } from "./app/teachers/ActivitiesTeacher";
 import { HistoricTeacher } from "./app/teachers/historicTeacher";
 import LoginScreen from "./app/login/Loginscreen";
+import { NewActivitiesTeacher } from "./app/teachers/NewActivities";
 
 export const router = createBrowserRouter([
     { path: "/login", element: <LoginScreen /> },
@@ -12,14 +12,13 @@ export const router = createBrowserRouter([
         path: "/teachers",
         element: <LayoutTeachers />,
         children: [
-            {
-                path: "dashboard", // Acessível em /teacher/dashboard
-                element: <DashboardTeacher />,
-            },
+            
             {
                 path: "activities", // Acessível em /teacher/activities
                 element: <ActivitiesTeacher />,
+                
             },
+            {path: 'new activities', element: <NewActivitiesTeacher/>},
             {
                 path: "historic",
                 element: <HistoricTeacher />,

@@ -15,7 +15,7 @@ import {
 
 export interface NavbarUser {
   name: string
-  role: "Direção" | "Professor" | "Aluno"
+  role:  "Professor" | "Aluno"
   avatarUrl?: string
 }
 
@@ -27,7 +27,6 @@ interface NavbarProps {
 
 
 const navItems: { path: string; label: string; icon: React.ElementType }[] = [
-  { path: "dashboard",  label: "Dashboard",  icon: LayoutDashboard },
   { path: "activities", label: "Atividades",  icon: ClipboardList   },
   { path: "historic",  label: "Histórico",   icon: History         },
 ]
@@ -46,7 +45,7 @@ function Avatar({ user }: { user: NavbarUser }) {
       <img
         src={user.avatarUrl}
         alt={user.name}
-        className="w-9 h-9 rounded-xl object-cover flex-shrink-0"
+        className="w-9 h-9 rounded-xl object-cover shrink-0"
       />
     )
   }
@@ -70,19 +69,20 @@ export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
 
   return (
     <aside
+    style={{boxShadow: '-4px 0 4px 12px #00000020'}}
       className={[
-        "relative flex flex-col h-screen bg-white border-r border-slate-100",
-        "transition-all duration-300 ease-in-out select-none flex-shrink-0",
-        collapsed ? "w-[68px]" : "w-[220px]",
+        "relative flex flex-col h-screen border-r border-slate-100",
+        "transition-all duration-300 ease-in-out select-none shrink-0",
+        collapsed ? "w-17" : "w-55",
       ].join(" ")}
     >
       <div
         className={[
-          "flex items-center gap-2.5 px-4 py-[18px] border-b border-slate-100 overflow-hidden",
+          "flex items-center  gap-2.5 px-4 py-4.5 border-b border-slate-100 overflow-hidden",
           collapsed ? "justify-center px-0" : "",
         ].join(" ")}
       >
-        <div className="w-8 h-8 bg-[#0785CB] rounded-lg flex items-center justify-center flex-shrink-0">
+        <div className="w-8 h-8 bg-[#0785CB] rounded-lg flex items-center justify-center shrink-0">
           <GraduationCap size={16} className="text-white" />
         </div>
         <span

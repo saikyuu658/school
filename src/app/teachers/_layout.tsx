@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/Navbar";
 
 export function LayoutTeachers (){
     function clearSession(){}
@@ -11,7 +11,6 @@ export function LayoutTeachers (){
         onLogout={clearSession}
       />
       <main className="flex-1 overflow-auto">
-       
         <Outlet />
       </main>
     </div>
