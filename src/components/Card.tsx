@@ -1,4 +1,5 @@
 import { MoreVertical, Calendar, Users } from 'lucide-react';
+import { useNavigate, type NavigateOptions } from 'react-router-dom';
 
 // 1. Definição da Interface
 interface CourseCardProps {
@@ -7,19 +8,24 @@ interface CourseCardProps {
   turma: string;
   dataEntrega: string;
   isFull?: boolean;
+  handleclick: ()=>void
 }
 
 export function CourseCard({ 
   titulo, 
   descricao, 
   turma, 
-  dataEntrega, 
+  dataEntrega,
+  handleclick, 
   isFull = false 
 }: CourseCardProps) {
+  const navigate = useNavigate()
   
   return (
     <div className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-5 transition-all flex flex-col gap-4  
-     'md:p-8 md:border-t-4 md:border-t-[#104e7a] md:gap-6' flex-1 `}>
+     md:p-8 md:border-t-4 md:border-t-[#104e7a] md:gap-6 flex-1 cursor-pointer hover:shadow-xl`}
+      onClick={handleclick}
+     >
       
       <div className="flex justify-between items-center">
         <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-wider">

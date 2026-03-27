@@ -4,7 +4,6 @@ import { useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import {
   GraduationCap,
-  LayoutDashboard,
   ClipboardList,
   History,
   LogOut,
@@ -32,30 +31,6 @@ const navItems: { path: string; label: string; icon: React.ElementType }[] = [
 ]
 
 
-function Avatar({ user }: { user: NavbarUser }) {
-  const initials = user.name
-    .split(" ")
-    .slice(0, 2)
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-
-  if (user.avatarUrl) {
-    return (
-      <img
-        src={user.avatarUrl}
-        alt={user.name}
-        className="w-9 h-9 rounded-xl object-cover shrink-0"
-      />
-    )
-  }
-
-  return (
-    <div className="w-9 h-9 rounded-xl bg-[#0785CB]/10 text-[#0785CB] text-[12px] font-bold flex items-center justify-center flex-shrink-0">
-      {initials}
-    </div>
-  )
-}
 
 
 export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
@@ -118,7 +93,6 @@ export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
           collapsed ? "justify-center" : "",
         ].join(" ")}
       >
-        <Avatar user={user} />
         <div
           className={[
             "min-w-0 transition-all duration-300 overflow-hidden",
@@ -165,7 +139,7 @@ export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
                 <Icon
                   size={17}
                   className={[
-                    "flex-shrink-0 transition-transform duration-150 group-hover:scale-110",
+                    "shrink-0 transition-transform duration-150 group-hover:scale-110",
                     isActive
                       ? "text-white"
                       : "text-slate-400 group-hover:text-[#0785CB]",
@@ -184,7 +158,7 @@ export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
 
                 {/* Indicador ativo */}
                 {isActive && !collapsed && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-white/60 flex-shrink-0" />
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
                 )}
 
                 {/* Tooltip colapsado */}
@@ -218,7 +192,7 @@ export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
         >
           <LogOut
             size={17}
-            className="flex-shrink-0 text-slate-300 group-hover:text-red-400 group-hover:-translate-x-0.5 transition-all duration-150"
+            className="shrink-0 text-slate-300 group-hover:text-red-400 group-hover:-translate-x-0.5 transition-all duration-150"
           />
           <span
             className={[

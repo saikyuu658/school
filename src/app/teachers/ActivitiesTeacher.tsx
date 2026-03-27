@@ -1,4 +1,4 @@
-import { Calendar, GraduationCap, Plus, PlusCircle, Sparkles } from "lucide-react";
+import { Calendar, GraduationCap, PlusCircle } from "lucide-react";
 import { Button } from "../../components/ui/my-button";
 import CourseCard from "../../components/Card";
 import { useNavigate } from "react-router-dom";
@@ -45,6 +45,12 @@ export function ActivitiesTeacher() {
   function newActivite(){
       navigate('/teachers/new-activitie')
   }
+
+  function detailsActivitie(){
+      navigate('/teachers/details-activitie')
+  }
+
+
   
   return (
     <section className="p-8">
@@ -63,6 +69,7 @@ export function ActivitiesTeacher() {
 
       <div className="flex flex-wrap gap-8">
         <CourseCard 
+          handleclick={detailsActivitie}
           dataEntrega={cardsExemple[0].date}
           descricao={cardsExemple[0].description}
           titulo={cardsExemple[0].title}
@@ -77,14 +84,16 @@ export function ActivitiesTeacher() {
       </div>
 
       <div className="flex flex-wrap gap-8 my-10">
-        {cardsExemple.slice(1, cardsExemple.length).map(e=>(
+        {cardsExemple.slice(1, cardsExemple.length).map((e, index)=>(
           <CourseCard 
-          dataEntrega={e.date}
-          descricao={e.description}
-          titulo={e.title}
-          turma={e.classNameValue}
-          isFull={false}  
-        />
+            key={index}
+            handleclick={detailsActivitie}
+            dataEntrega={e.date}
+            descricao={e.description}
+            titulo={e.title}
+            turma={e.classNameValue}
+            isFull={false}  
+          />
         ))}
       </div>
     </section>
