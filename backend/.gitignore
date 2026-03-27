@@ -1,0 +1,18 @@
+# Ambientes Virtuais
+venv/
+env/
+ENV/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Banco de dados local (SQLite)
+db.sqlite3
+
+# Arquivos de ambiente
+.env
+
+# Docker (se houver logs locais)
+*.log
