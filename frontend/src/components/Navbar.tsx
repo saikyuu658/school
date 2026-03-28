@@ -5,35 +5,25 @@ import { NavLink, useNavigate } from "react-router-dom"
 import {
   GraduationCap,
   ClipboardList,
-  History,
+  // History,
   LogOut,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react"
+import type { UserType } from "../@types/user"
 
-
-export interface NavbarUser {
-  name: string
-  role:  "Professor" | "Aluno"
-  avatarUrl?: string
-}
 
 interface NavbarProps {
-  user: NavbarUser
-  basePath: string   // ex: "/professor" | "/aluno"
+  navItems : { path: string; label: string; icon: React.ElementType }[]
+  user: UserType | null
   onLogout?: () => void
 }
 
 
-const navItems: { path: string; label: string; icon: React.ElementType }[] = [
-  { path: "activities", label: "Atividades",  icon: ClipboardList   },
-  { path: "historic",  label: "Histórico",   icon: History         },
-]
 
 
 
-
-export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
+export default function Navbar({ user, navItems, onLogout }: NavbarProps) {
   const [collapsed, setCollapsed] = useState(false)
   const navigate = useNavigate()
 
@@ -100,9 +90,9 @@ export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
           ].join(" ")}
         >
           <p className="text-slate-800 text-[13px] font-semibold truncate leading-tight">
-            {user.name}
+            {user?.username}  {user?.turma? `- ${user.turma}` : "" }
           </p>
-          <p className="text-slate-400 text-[11px] mt-0.5">{user.role}</p>
+          <p className="text-slate-400 text-[11px] mt-0.5">{user?.role}</p>
         </div>
       </div>
 
@@ -120,7 +110,7 @@ export default function Navbar({ user, basePath, onLogout }: NavbarProps) {
         {navItems.map(({ path, label, icon: Icon }) => (
           <NavLink
             key={path}
-            to={`${basePath}/${path}`}
+            to={`${path}`}
             end
             title={collapsed ? label : undefined}
             className={({ isActive }) =>

@@ -1,18 +1,17 @@
 from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from core.views import (
-    RegisterView, MeAtividadesView, MeRespostasView, 
-    AtividadeRespostasView, RespostaDetailView
-)
+from core.views import    EmailTokenObtainPairView, MeAtividadesView, MeRespostasView
+from core.views import  AtividadeRespostasView, RespostaDetailView, UserMeView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     # Autenticação e Cadastro
-    path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('auth/login/', EmailTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('auth/register/', RegisterView.as_view(), name='register'),
+    path('auth/me/', UserMeView.as_view(), name='me'),
     
     # Atividades
     path('me/atividades/', MeAtividadesView.as_view(), name='me_atividades'),

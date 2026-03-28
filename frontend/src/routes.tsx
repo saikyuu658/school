@@ -1,54 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
-import { LayoutTeachers } from "./app/teachers/_layout";
-import { ActivitiesTeacher } from "./app/teachers/ActivitiesTeacher";
-import { HistoricTeacher } from "./app/teachers/HistoricTeacher";
-import LoginScreen from "./app/login/Loginscreen";
-import { CreateActivityForm, } from "./app/teachers/NewActivities";
-import { DetailsActivitiesTeacher } from "./app/teachers/DetailsActivities";
-import { MyAnwers } from "./app/students/MyAnswers";
-import { MyAtivities} from "./app/students/MyAtivities";
-import { LayoutStudent } from "./app/students/_layout";
-import { AnswersForm } from "./app/students/AnswersForm";
+import LoginScreen from "./app/loginScreen";
+import { Layout } from "./app/auth/_layout";
+import { Activities } from "./app/auth/Activities";
+import { DetailsActivity } from "./app/auth/Activity";
+import { NewActivity } from "./app/auth/NewActivity";
+import { MyAnwers } from "./app/auth/MyAnswers";
+import { AnswersForm } from "./app/auth/AnswersForm";
+import { MyAtivities } from "./app/auth/MyAtivities";
 
 export const router = createBrowserRouter([
     { path: "/login", element: <LoginScreen /> },
     { path: "/", element: <LoginScreen /> },
-    {
-        path: "/teachers",
-        element: <LayoutTeachers />,
+    { 
+        path: '/auth', 
+        element: <Layout />,
         children: [
-            
-            {
-                path: "activities", // Acessível em /teacher/activities
-                element: <ActivitiesTeacher />,
-                
-            },
-            {
-                path: "historic",
-                element: <HistoricTeacher />,
-            },
-            {path: 'new-activitie', element: <CreateActivityForm/>},
-            {path: 'details-activitie', element: <DetailsActivitiesTeacher/>},
-        ],
+            {path: 'activities', element: <Activities />},
+            {path: 'new-activity', element: <NewActivity/>},
+            {path: 'details-activity', element: <DetailsActivity/>},
+            {path: 'my-answers', element: <MyAnwers />},
+            {path: 'my-activities', element: <MyAtivities />},
+            {path: 'answers', element: <AnswersForm />},
+        ]
     },
-     {
-        path: "/student",
-        element: <LayoutStudent />,
-        children: [
-            
-            {
-                path: "activities", // Acessível em /teacher/activities
-                element: <MyAtivities />,
-                
-            },
-            {
-                path: "historic",
-                element: <MyAnwers />,
-            },
-            {
-                path: "answers",
-                element: <AnswersForm />,
-            },
-        ],
-    },
+   
 ]);

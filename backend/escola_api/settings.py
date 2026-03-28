@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-
+from corsheaders.defaults import default_headers
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s-d3mey3ld)fg(bi=&v)tm2!4p$ea^ilsxz4%0t8lrziqwonrx'
+
 
 
 DEBUG = True
@@ -22,7 +23,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
+SIMPLE_JWT = {
+    'USER_ID_FIELD': 'id',
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -35,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_filters',
     'core',
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -47,6 +53,7 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'core.User'
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,8 +62,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',   
+]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = (
+    *default_headers,
+    "credentials",
+)
 
 ROOT_URLCONF = 'escola_api.urls'
+
 
 TEMPLATES = [
     {

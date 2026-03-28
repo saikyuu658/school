@@ -7,14 +7,23 @@ class User(AbstractUser):
         ('PROFESSOR', 'Professor'),
         ('ALUNO', 'Aluno'),
     )
+    TURMA_CHOICES = (
+        ('A', 'Turma A'),
+        ('B', 'Turma B'),
+        ('C', 'Turma C'),
+    )
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+    email = models.EmailField(unique=True, null=False, blank=False)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
     turma = models.CharField(max_length=50, null=True, blank=True) 
 
 class Atividade(models.Model):
+    TURMA_CHOICES = User.TURMA_CHOICES
     professor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='atividades_criadas')
     titulo = models.CharField(max_length=255)
     descricao = models.TextField()
-    turma = models.CharField(max_length=50)
+    turma = models.CharField(max_length=50, choices=TURMA_CHOICES)
     data_entrega = models.DateTimeField()
     
     def __str__(self):

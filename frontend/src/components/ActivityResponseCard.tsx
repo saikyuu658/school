@@ -1,16 +1,14 @@
-import { Calendar, CheckCircle2, MessageSquare } from 'lucide-react';
+import {  CheckCircle2, MessageSquare } from 'lucide-react';
 
 interface ActivityResponseCardProps {
-  title: string;
-  sumeted: string;
-  grade: string | number;
+  titulo: string;
+  nota: number | null;
   feedback?: string;
 }
 
 export function ActivityResponseCard({
-  title,
-  sumeted,
-  grade,
+  titulo,
+  nota,
   feedback
 }: ActivityResponseCardProps) {
   return (
@@ -21,13 +19,13 @@ export function ActivityResponseCard({
         <div className="flex items-center gap-2 mb-1">
           <CheckCircle2 size={16} className="text-green-500 shrink-0" />
           <h3 className="text-base md:text-lg font-bold text-gray-900 truncate tracking-tight">
-            {title}
+            {titulo}
           </h3>
         </div>
-        <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+        {/* <div className="flex items-center gap-1.5 text-slate-400 text-xs">
           <Calendar size={14} />
           <span>Entregue em: {sumeted}</span>
-        </div>
+        </div> */}
       </div>
 
       {/* 2. Minha Nota */}
@@ -37,7 +35,7 @@ export function ActivityResponseCard({
         </span>
         <div className="flex items-center gap-1.5">
           <span className="text-lg font-bold text-[#104e7a]">
-            {grade}
+            {nota !== null ? nota : "Sem nota"}
           </span>
         </div>
       </div>
