@@ -33,7 +33,6 @@ export function NewActivity() {
 
   const onSubmit = async (data: ActivityFormData) => {
     try {
-      console.log("Dados da Atividade:", data);
       await activitiesService.createActivity(data);
       toast.success("Atividade criada com sucesso!"); 
       reset();
@@ -44,6 +43,9 @@ export function NewActivity() {
     }
   };
 
+  const goBack = () => {
+    window.history.back();
+  }
    
 
   return (
@@ -92,7 +94,9 @@ export function NewActivity() {
         </div>
 
         <div className="flex justify-end gap-3 mt-4 pt-6 border-t border-gray-100">
-          <Button variant="outlined" type="button" disabled={isSubmitting}>
+          <Button 
+            onClick={goBack}
+            variant="outlined" type="button" disabled={isSubmitting}>
             Voltar
           </Button>
           <Button

@@ -1,22 +1,24 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { useAuth } from "../../hooks/useAuth";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { ClipboardList } from "lucide-react";
 
 export function Layout (){
     const {logout, getMe, user } = useAuth()
-
-    const navItems: { path: string; label: string; icon: React.ElementType }[] = useMemo(() => {
+    const navigate = useNavigate()
+    const [navItems, setNavItems]=useState<{ path: string; label: string; icon: React.ElementType }[] >([])
+    useMemo(() => {
         if(user?.role === 'ALUNO'){
-            return [
-              { path: "my-activities", label: "Minhas Atividades",  icon: ClipboardList },
+
+            setNavItems([
               { path: "my-answers", label: "Minhas Respostas",  icon: ClipboardList },
-            ]
+            ])
+            navigate("/auth/my-activities")
+
         }else if(user?.role === 'PROFESSOR'){
-            return [
-              { path: "activities", label: "Atividades",  icon: ClipboardList },
-            ]
+            navigate("/auth/activities")
+            return []
         }
         return []
     }, [user?.role])
@@ -27,7 +29,7 @@ export function Layout (){
       }
     }, [])
     return (
-    <div className="flex h-screen">
+    <div className="h-screen">
       <Navbar
         user={user}
         navItems={navItems}

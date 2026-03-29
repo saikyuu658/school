@@ -31,8 +31,8 @@ export default function LoginScreen() {
 
     async function onSubmit(data: LoginFormData) {
         try {
-          const responseLogin = await login(data)
-          console.log("Login bem-sucedido:", responseLogin)    
+          await login(data)
+          toast.success("Login realizado com sucesso!")  
           navigate( "/auth/") 
         } catch (error) {
           toast.error("Erro ao fazer login. Verifique suas credenciais.")

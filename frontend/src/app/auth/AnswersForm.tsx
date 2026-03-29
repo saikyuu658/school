@@ -72,7 +72,7 @@ export function AnswersForm() {
         await editMyAnswer({ texto: data.texto }, answers.id!)
         toast.success('Resposta editada com sucesso!')
       } else {
-        await submitAnswer({ texto: data.texto, atividade: atividade.id });
+        await submitAnswer({ texto: data.texto, atividade_id: atividade.id });
         toast.success('Resposta enviada com sucesso!')
       }
       reset()
@@ -105,8 +105,15 @@ export function AnswersForm() {
            </div>
         </div>
       </div>
-
-      {/* 2. Formulário de Resposta */}
+      {
+        expired && (
+          <p className='bg-orange-300 p-3 text-orange-800'>
+            Atividade expirada
+            <span className='text-[11px] block italic'>Não é possível enviar resposta para atividades vencidas</span>  
+          </p>
+        )
+      }
+      
       <form onSubmit={handleSubmit(onSubmit)} className="p-8 flex flex-col gap-6">
         <TextAreaField
           label="Sua Resposta"

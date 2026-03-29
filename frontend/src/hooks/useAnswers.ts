@@ -1,7 +1,7 @@
 import { AnswerService } from "../services/answer.service"
 
 export function useAnswers() {
-  const submitAnswer = async (resposta: { texto: string, atividade: number }) => {
+  const submitAnswer = async (resposta: { texto: string, atividade_id: number }) => {
     const data = await AnswerService.submitAnswer(resposta)
     return data
   }

@@ -8,7 +8,7 @@ export const AnswerService = {
     myAnwers: () =>
         http.get('/me/respostas/').then((data: any) => data),
 
-    submitAnswer: ( resposta: { texto: string, atividade: number }) =>
+    submitAnswer: ( resposta: { texto: string, atividade_id: number }) =>
         http.post(`/respostas/`, resposta).then((data: any) => data),
     
     editAnswer: ( resposta: { nota: number, feedback: string }, idResposta: number) =>

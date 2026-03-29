@@ -31,7 +31,6 @@ export function DetailsActivity() {
         try {
             const resp = await allAnswersByActivity(Number(atividade.id))
             setData(resp)
-            console.log(resp)
         } catch (error) {
             toast.error('Erro ao buscar atividade')
         }

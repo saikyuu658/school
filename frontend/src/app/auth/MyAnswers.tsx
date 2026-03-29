@@ -3,6 +3,7 @@ import { ActivityResponseCard } from "../../components/ActivityResponseCard";
 import { useAnswers } from "../../hooks/useAnswers";
 import type { AnswerType } from "../../@types/answer";
 import toast from "react-hot-toast";
+import { Button } from "../../components/ui/my-button";
 
 export function MyAnwers (){
     const {myAnwers} = useAnswers()
@@ -20,6 +21,10 @@ export function MyAnwers (){
         fetchData()
     }, [])
 
+    const goBack = () => {       
+        window.history.back();
+    }
+
     return (
         <section className="p-8">
             <div className="flex justify-between items-end mb-8">
@@ -27,6 +32,7 @@ export function MyAnwers (){
                     <h2 className="text-3xl font-bold">Histórico de Respostas</h2>
                     <p className="text-gray-500">Observe suas notas e acompanhe seu desenpenho</p>
                 </div>
+                <Button onClick={goBack} variant="outlined">Voltar</Button>
             </div>
             <div className="flex flex-col gap-4 bg-gray-50">
                 {data.length === 0 ? (

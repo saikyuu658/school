@@ -33,7 +33,14 @@ export function CourseCard({
         </h2>
         
         {isFull && (
-          <p className="hidden md:block text-gray-600 text-base leading-relaxed max-w-4xl mt-1 text-ellipsis overflow-hidden">
+          <p 
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden'
+            }}
+            className="hidden md:block text-gray-600 text-base leading-relaxed max-w-4xl mt-1 overflow-hidden line-clamp-2">
             {data.descricao}
           </p>
         )}

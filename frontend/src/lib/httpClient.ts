@@ -1,5 +1,4 @@
 const BASE_URL = import.meta.env.VITE_API_URL
-console.log("MInha meta: " + import.meta.env.VITE_API_URL)
 type RequestOptions = RequestInit & {
   params?: Record<string, string>
 }
