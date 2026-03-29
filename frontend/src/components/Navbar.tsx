@@ -4,8 +4,6 @@ import { useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import {
   GraduationCap,
-  ClipboardList,
-  // History,
   LogOut,
   ChevronLeft,
   ChevronRight,

@@ -1,5 +1,5 @@
-const BASE_URL = 'http://127.0.0.1:8000'
-
+const BASE_URL = import.meta.env.VITE_API_URL
+console.log("MInha meta: " + import.meta.env.VITE_API_URL)
 type RequestOptions = RequestInit & {
   params?: Record<string, string>
 }
@@ -14,6 +14,7 @@ async function request<T>(endpoint: string, options: RequestOptions = {}): Promi
 
   const response = await fetch(url.toString(), {
     ...rest,
+    //@ts-ignore
     headers: {
       'Content-Type': 'application/json',
       ...getAuthHeader(),

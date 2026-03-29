@@ -9,17 +9,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     # Autenticação e Cadastro
-    path('auth/login/', EmailTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('auth/me/', UserMeView.as_view(), name='me'),
+    path('api/auth/login/', EmailTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/me/', UserMeView.as_view(), name='me'),
     
     # Atividades
-    path('me/atividades/', MeAtividadesView.as_view(), name='me_atividades'),
-    path('atividades/', MeAtividadesView.as_view(), name='atividades_create'),
+    path('api/me/atividades/', MeAtividadesView.as_view(), name='me_atividades'),
+    path('api/atividades/', MeAtividadesView.as_view(), name='atividades_create'),
     
     # Respostas
-    path('me/respostas/', MeRespostasView.as_view(), name='me_respostas'),
-    path('respostas/', MeRespostasView.as_view(), name='respostas_create'),
-    path('atividades/<int:id>/respostas/', AtividadeRespostasView.as_view(), name='atividade_respostas'),
-    path('respostas/<int:id>/', RespostaDetailView.as_view(), name='resposta_patch'),
+    path('api/me/respostas/', MeRespostasView.as_view(), name='me_respostas'),
+    path('api/respostas/', MeRespostasView.as_view(), name='respostas_create'),
+    path('api/atividades/<int:id>/respostas/', AtividadeRespostasView.as_view(), name='atividade_respostas'),
+    path('api/respostas/<int:id>/', RespostaDetailView.as_view(), name='resposta_patch'),
 ]

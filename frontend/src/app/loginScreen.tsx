@@ -23,7 +23,6 @@ const features = [
 
 export default function LoginScreen() {
   
-
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginFormData>({
         resolver: yupResolver(loginSchema),
     })
@@ -32,10 +31,9 @@ export default function LoginScreen() {
 
     async function onSubmit(data: LoginFormData) {
         try {
-            console.log("Dados do formulário:", data)
-            const responseLogin = await login(data)
-            console.log("Login bem-sucedido:", responseLogin)    
-            navigate( "/auth/") 
+          const responseLogin = await login(data)
+          console.log("Login bem-sucedido:", responseLogin)    
+          navigate( "/auth/") 
         } catch (error) {
           toast.error("Erro ao fazer login. Verifique suas credenciais.")
         }
